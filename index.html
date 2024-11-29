@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        #body
+        {
+            border: 2px solid black;
+            background-color: blue;
+            height: 80vh;
+            width: 50%;
+            margin-left: 25%;
+        }
+        body
+        {
+            background-color: black;
+        }
+        h1
+        {
+            padding-left: 27%;
+            border: 2px solid black;
+            
+        }
+        button
+        {
+            background-color: yellowgreen;
+        }
+        p
+        {
+            font-size: 20px;
+        }
+        input:focus
+        {
+            background-color: orangered;
+            
+        }
+        input
+        {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="body">
+        
+        <h1>Grade Calculator</h1>
+
+    <label for="marks">Enter Marks: </label>
+    <input type="number" id="marks" placeholder="Marks obtained">
+
+    <label for="totalMarks">Enter Total Marks: </label>
+    <input type="number" id="totalMarks" placeholder="Total marks">
+
+    <button onclick="calculateGrade()">Submit</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateGrade() {
+           
+            let marks = parseFloat(document.querySelector("#marks").value);
+            let totalMarks = parseFloat(document.querySelector("#totalMarks").value);
+           
+            if (isNaN(marks) || isNaN(totalMarks) || marks < 0 || totalMarks <= 0 || marks > totalMarks) {
+                document.querySelector("#result").innerHTML = "Please enter valid marks and total marks.";
+                return;
+            }
+
+          
+            let percentage = (marks / totalMarks) * 100;
+
+           
+            let grade;
+
+          
+            switch (true) {
+                case (percentage >= 90):
+                    grade = 'A+';
+                    break;
+                case (percentage >= 80):
+                    grade = 'A';
+                    break;
+                case (percentage >= 70):
+                    grade = 'B+';
+                    break;
+                case (percentage >= 60):
+                    grade = 'B';
+                    break;
+                case (percentage >= 50):
+                    grade = 'C';
+                    break;
+                case (percentage >= 40):
+                    grade = 'D';
+                    break;
+                default:
+                    grade = 'F';
+            }
+
+           
+            document.querySelector("#result").innerHTML = `
+                <p>Percentage: ${percentage.toFixed(2)}%</p>
+                <p>Grade: ${grade}</p>
+            `;
+        }
+    </script>
+    </div>
+
+</body>
+</html>
+
